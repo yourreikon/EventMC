@@ -1,0 +1,42 @@
+
+/* Extra polished FAQ / Rules pages and motion */
+.extra-page{padding-top:90px;padding-bottom:90px;min-height:70vh}.extra-page .section-heading{margin-bottom:42px}.extra-page .section-heading h1{font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.08;letter-spacing:-.045em}.faq-list{max-width:900px;margin:0 auto;display:grid;gap:12px}.faq-item,.policy-card{background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border:1px solid rgba(255,196,0,.16);border-radius:16px;padding:0 22px;transition:border-color .25s,transform .25s,background .25s}.faq-item:hover,.policy-card:hover{border-color:rgba(255,196,0,.45);transform:translateY(-2px)}.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:21px 0;font-weight:750}.faq-item summary::-webkit-details-marker{display:none}.faq-item summary span{color:#ffc400;font-size:1.5rem;transition:transform .2s}.faq-item[open] summary span{transform:rotate(45deg)}.faq-item p{color:#bdbdbd;line-height:1.8;margin:0;padding:0 0 22px;max-width:760px}.policy-card{padding:26px;margin:0 auto 18px;max-width:1000px}.policy-card h2{font-size:1.15rem;margin:0 0 20px}.rule-list{display:grid;gap:0}.rule-row{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:15px 0;border-top:1px solid rgba(255,255,255,.075)}.rule-row span{color:#dedede}.rule-row strong{text-align:right;color:#ffc400;font-size:.9rem}.rules-note{max-width:1000px;margin:18px auto;color:#aaa;line-height:1.7}.page-next{display:flex;justify-content:space-between;gap:14px;max-width:1000px;margin:42px auto 0}.page-next a{display:inline-flex}.extra-page .section-heading p{max-width:650px;margin-inline:auto;color:#aaa;line-height:1.7}@media(max-width:650px){.extra-page{padding-top:55px;padding-bottom:55px}.policy-card{padding:18px}.rule-row{align-items:flex-start;flex-direction:column;gap:6px}.rule-row strong{text-align:left}.page-next{flex-direction:column}.page-next a{justify-content:center}}
+@media(prefers-reduced-motion:no-preference){.extra-page .section-heading,.faq-item,.policy-card{animation:rise-in .55s both}.faq-item:nth-child(2){animation-delay:.04s}.faq-item:nth-child(3){animation-delay:.08s}.faq-item:nth-child(4){animation-delay:.12s}@keyframes rise-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}}
+
+/* Lightweight page transitions: no libraries, API calls, or heavy animation loops */
+html{scroll-behavior:smooth}body{animation:page-enter .22s ease-out both}.site-header{backdrop-filter:blur(14px)}.nav-links a,.button,.staff-card{transition:color .18s ease,border-color .18s ease,background-color .18s ease,transform .18s ease,box-shadow .18s ease}.staff-card:hover{transform:translateY(-3px)}.button:hover{transform:translateY(-1px)}@keyframes page-enter{from{opacity:.78}to{opacity:1}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}body{animation:none}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+body.page-leaving{opacity:0;transition:opacity .11s ease-out}
+
+
+/* Limited-time rank sale */
+.sale-banner{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:center;margin:34px 0 20px;padding:28px;border:1px solid rgba(255,198,41,.42);border-radius:18px;background:linear-gradient(120deg,rgba(255,198,41,.13),rgba(18,17,14,.96) 58%,rgba(255,198,41,.06));box-shadow:0 18px 55px rgba(0,0,0,.22)}
+.sale-eyebrow,.sale-countdown-label{display:block;color:var(--gold);font-size:.72rem;font-weight:900;letter-spacing:.16em}
+.sale-banner h3{margin:9px 0;font-size:clamp(1.25rem,2.5vw,1.8rem);color:var(--text)}
+.sale-banner p,.booster-perk p{margin:0;color:var(--muted);line-height:1.65}
+.sale-countdown-wrap{padding:15px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.25)}
+.sale-countdown{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}
+.sale-countdown>div{display:flex;flex-direction:column;align-items:center;padding:12px 5px;border-radius:10px;background:rgba(255,198,41,.09)}
+.sale-countdown strong{font-size:clamp(1.35rem,3vw,2rem);line-height:1.1;color:var(--gold);font-variant-numeric:tabular-nums}
+.sale-countdown span{margin-top:5px;color:var(--muted);font-size:.58rem;font-weight:800;letter-spacing:.12em}
+.booster-perk{display:flex;gap:16px;align-items:center;margin:18px 0 26px;padding:18px 20px;border:1px solid rgba(255,198,41,.24);border-radius:14px;background:rgba(255,198,41,.055)}
+.booster-perk-icon{font-size:1.8rem}
+.booster-perk strong{color:var(--gold);font-size:.82rem;letter-spacing:.08em}
+.booster-perk p{margin-top:4px;font-size:.9rem}
+.sale-ranks-grid{align-items:stretch}
+.sale-rank-card{display:flex;flex-direction:column}
+.sale-price{display:flex;flex-direction:column;align-items:center;gap:2px;margin:6px 0 12px}
+.sale-price del{color:var(--muted);font-size:.95rem}
+.sale-price strong{color:var(--gold);font-size:2rem;line-height:1.15}
+.sale-price span{color:var(--muted);font-size:.62rem;font-weight:900;letter-spacing:.15em}
+.booster-price{margin:0 0 15px;padding:9px 10px;border-radius:9px;background:rgba(255,198,41,.075);color:var(--text);font-size:.82rem;text-align:center}
+.booster-price strong{color:var(--gold)}
+.deal-note{margin:14px 0;padding:11px 12px;border:1px dashed rgba(255,198,41,.42);border-radius:9px;color:var(--text);font-size:.8rem;line-height:1.5}
+.deal-note strong{color:var(--gold)}
+.sale-rank-card .rank-action,.sale-rank-card .button{margin-top:auto}
+.sale-policy{margin:26px 0 14px;padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.sale-policy-heading{margin-bottom:10px;color:var(--gold);font-weight:900;letter-spacing:.05em}
+.sale-policy p{margin:7px 0;color:var(--muted);line-height:1.6}
+.sale-policy strong{color:var(--text)}
+@media(max-width:760px){.sale-banner{grid-template-columns:1fr;padding:21px}.sale-countdown-wrap{padding:12px}.booster-perk{align-items:flex-start;padding:15px}.sale-price strong{font-size:1.8rem}}
+@media(max-width:420px){.sale-countdown{gap:5px}.sale-countdown>div{padding:10px 2px}.sale-countdown span{font-size:.52rem}}
