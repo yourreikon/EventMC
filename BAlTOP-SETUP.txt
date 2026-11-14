@@ -1,0 +1,21 @@
+EVENTMC BALTOP — DAILY MANUAL UPDATE
+
+The Baltop page is part of the complete EventMC website. It does not use fake/demo player names or balances. Until real data is entered, the leaderboard remains hidden and displays an unpublished-data message.
+
+DAILY UPDATE
+1. Join EventMC in Minecraft Java Edition.
+2. Run /baltop 1 and copy the actual Top 8 names and balances.
+3. Open baltop-data.js in the GitHub repository.
+4. Replace the empty players array with exactly 8 entries in richest-to-8th order, e.g. { name: "YourIGN", balance: 12345 }. The example is a FORMAT ONLY; use actual server results.
+5. Set updatedAt to the date/time you checked the command.
+6. Commit the change. GitHub Pages will publish the updated leaderboard.
+
+IMPORTANT
+- Edit only baltop-data.js for daily updates.
+- Balances must be numbers without commas (e.g. 12500).
+- Keep players in the exact order shown by /baltop 1.
+- Exactly 8 valid entries are required; otherwise the leaderboard stays hidden.
+- This is a manual snapshot, not a live connection. It changes only after you update and publish the file.
+
+NAVIGATION
+All site pages share links to Home, Server, Ranks, Permissions, Staff, Rules, FAQ and Baltop in the header and footer.

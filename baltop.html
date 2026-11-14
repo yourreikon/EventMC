@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="The richest players in the EventMC economy.">
+  <title>EventMC | Baltop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/eventmc-logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="extras.css">
+  <link rel="stylesheet" href="baltop.css">
+</head>
+
+<body class="staff-page baltop-page">
+
+  <!-- RED FIRE ANIMATION -->
+  <div class="red-fire-layer" id="redFireLayer" aria-hidden="true">
+    <div class="red-fire-base"></div>
+  </div>
+
+  <div class="page-glow"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html#home" aria-label="EventMC Home">
+      <img src="assets/eventmc-logo.png" alt="EventMC Logo" onerror="this.style.display='none'">
+      <span>EVENT<span class="yellow">MC</span></span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#server">Server</a>
+      <a href="index.html#ranks">Ranks</a>
+      <a href="index.html#permissions">Permissions</a>
+      <a href="staff.html">Staff</a>
+      <a href="rules.html">Rules</a>
+      <a href="faq.html">FAQ</a>
+      <a href="baltop.html">Baltop</a>
+      <a class="nav-discord" href="https://discord.gg/d8NJ4SGXV" target="_blank" rel="noopener noreferrer">Join Discord ↗</a>
+    </nav>
+  </header>
+
+  <main class="baltop-main">
+    <section class="baltop-hero">
+      <div class="section-kicker">EVENTMC ECONOMY</div>
+      <h1>THE <span class="yellow">WEALTH ELITE.</span></h1>
+      <p>Fortunes are made in-game. Discover the richest players in EventMC.</p>
+      <div class="baltop-rule"></div>
+    </section>
+
+    <section class="wealth-podium" aria-label="Top three richest players">
+      <article class="wealth-card wealth-silver">
+        <div class="wealth-crown" aria-hidden="true">♛</div>
+        <div class="wealth-caption">SILVER ELITE</div>
+        <h2 class="wealth-name" id="wealthName2">—</h2>
+        <div class="wealth-balance"><span id="wealthBalance2">—</span><small>coins</small></div>
+        <div class="wealth-accent"></div>
+      </article>
+
+      <article class="wealth-card wealth-champion">
+        <div class="wealth-crown" aria-hidden="true">♛</div>
+        <div class="wealth-caption">WEALTH CHAMPION</div>
+        <h2 class="wealth-name" id="wealthName1">—</h2>
+        <div class="wealth-balance"><span id="wealthBalance1">—</span><small>coins</small></div>
+        <div class="wealth-accent"></div>
+      </article>
+
+      <article class="wealth-card wealth-bronze">
+        <div class="wealth-crown" aria-hidden="true">♛</div>
+        <div class="wealth-caption">BRONZE ELITE</div>
+        <h2 class="wealth-name" id="wealthName3">—</h2>
+        <div class="wealth-balance"><span id="wealthBalance3">—</span><small>coins</small></div>
+        <div class="wealth-accent"></div>
+      </article>
+    </section>
+
+    <section class="wealth-rest">
+      <div class="wealth-rest-heading">
+        <div>
+          <div class="section-kicker">THE NEXT FORTUNES</div>
+          <h2>RISING WEALTH.</h2>
+        </div>
+        <span>FIVE MORE PLAYERS</span>
+      </div>
+
+      <div class="wealth-list" id="wealthList"></div>
+      <p class="wealth-data-note" id="baltopStatus" role="status" aria-live="polite">No leaderboard data has been published yet.</p>
+      <p class="wealth-data-note" id="baltopUpdated"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="index.html">EVENT<span class="yellow">MC</span></a>
+    <p>Make your legacy. One battle at a time.</p>
+
+    <div class="footer-links">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#server">Server</a>
+      <a href="index.html#ranks">Ranks</a>
+      <a href="index.html#permissions">Permissions</a>
+      <a href="staff.html">Staff</a>
+      <a href="rules.html">Rules</a>
+      <a href="faq.html">FAQ</a>
+      <a href="baltop.html">Baltop</a>
+      <a href="https://discord.gg/d8NJ4SGXV" target="_blank" rel="noopener noreferrer">Discord ↗</a>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="currentYear"></span> EventMC. All rights reserved.</span>
+      <span>Not affiliated with Mojang or Microsoft.</span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const layer = document.getElementById("redFireLayer");
+      if (!layer) return;
+
+      for (let i = 0; i < 42; i++) {
+        const flame = document.createElement("span");
+        flame.className = "red-flame";
+        flame.style.setProperty("--left", Math.random() * 100 + "%");
+        flame.style.setProperty("--delay", Math.random() * 5 + "s");
+        flame.style.setProperty("--duration", (2.5 + Math.random() * 3) + "s");
+        flame.style.setProperty("--size", (35 + Math.random() * 75) + "px");
+        layer.appendChild(flame);
+      }
+
+      for (let i = 0; i < 60; i++) {
+        const ember = document.createElement("span");
+        ember.className = "red-ember";
+        ember.style.setProperty("--left", Math.random() * 100 + "%");
+        ember.style.setProperty("--delay", Math.random() * 7 + "s");
+        ember.style.setProperty("--duration", (3 + Math.random() * 5) + "s");
+        layer.appendChild(ember);
+      }
+    })();
+  </script>
+
+  <script src="script.js" defer></script>
+  <script src="baltop-data.js" defer></script>
+  <script src="baltop.js" defer></script>
+  <script defer src="page-transitions.js"></script>
+</body>
+</html>

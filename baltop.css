@@ -1,0 +1,428 @@
+
+/* EventMC Baltop — typography-led leaderboard with red fire animation. */
+
+.baltop-page {
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* RED FIRE BACKGROUND */
+.red-fire-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.red-fire-base {
+  position: absolute;
+  bottom: -100px;
+  left: -10%;
+  width: 120%;
+  height: 260px;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(255, 0, 0, .24), transparent 58%),
+    radial-gradient(ellipse at 15% 100%, rgba(255, 55, 0, .18), transparent 45%),
+    radial-gradient(ellipse at 85% 100%, rgba(180, 0, 0, .2), transparent 45%);
+  filter: blur(35px);
+  animation: redBasePulse 4s ease-in-out infinite alternate;
+}
+
+.red-flame {
+  position: absolute;
+  bottom: -20px;
+  left: var(--left);
+  width: var(--size);
+  height: calc(var(--size) * 2.5);
+  opacity: 0;
+  transform-origin: bottom center;
+  border-radius: 50% 50% 25% 25%;
+  background: linear-gradient(
+    to top,
+    rgba(120, 0, 0, .05) 0%,
+    rgba(200, 0, 0, .35) 35%,
+    rgba(255, 30, 0, .65) 65%,
+    rgba(255, 105, 20, .5) 85%,
+    transparent 100%
+  );
+  filter: blur(9px);
+  animation: redFlameRise var(--duration) ease-in infinite;
+  animation-delay: var(--delay);
+}
+
+.red-flame::before {
+  content: "";
+  position: absolute;
+  inset: 15% 20% 0;
+  border-radius: 50% 50% 30% 30%;
+  background: linear-gradient(
+    to top,
+    rgba(180, 0, 0, .2),
+    rgba(255, 35, 0, .65),
+    rgba(255, 145, 35, .35),
+    transparent
+  );
+  filter: blur(5px);
+}
+
+.red-ember {
+  position: absolute;
+  bottom: -10px;
+  left: var(--left);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ff3b18;
+  box-shadow: 0 0 8px 2px rgba(255, 35, 0, .65);
+  opacity: 0;
+  animation: redEmberRise var(--duration) linear infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes redFlameRise {
+  0% {
+    transform: translateY(0) scaleX(.8) rotate(-5deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: .55;
+  }
+  50% {
+    transform: translateY(-45vh) scaleX(1.15) rotate(5deg);
+    opacity: .4;
+  }
+  100% {
+    transform: translateY(-100vh) scaleX(.65) rotate(-7deg);
+    opacity: 0;
+  }
+}
+
+@keyframes redEmberRise {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: .9;
+  }
+  100% {
+    transform: translate(35px, -100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes redBasePulse {
+  from {
+    opacity: .55;
+    transform: scaleX(.95);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1.08);
+  }
+}
+
+/* Keep website content above fire */
+.site-header,
+.baltop-main,
+.site-footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* ORIGINAL BALTOP DESIGN */
+.baltop-main {
+  width: min(1000px, calc(100% - 40px));
+  margin: 0 auto;
+  padding-bottom: 55px;
+}
+
+.baltop-hero {
+  text-align: center;
+  padding: 78px 0 40px;
+}
+
+.baltop-hero h1 {
+  margin: 0;
+  font-size: clamp(42px, 7vw, 70px);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.baltop-hero p {
+  color: #aaa69c;
+  margin: 16px 0 0;
+  font-size: 14px;
+}
+
+.baltop-rule {
+  width: 125px;
+  height: 1px;
+  margin: 27px auto 0;
+  background: linear-gradient(90deg, transparent, #e4b84d, transparent);
+}
+
+.wealth-podium {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr 1fr;
+  align-items: end;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto 68px;
+}
+
+.wealth-card {
+  --metal: #c4cbd2;
+  position: relative;
+  min-height: 235px;
+  padding: 100px 18px 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.012) 60%), #10100f;
+  border: 1px solid color-mix(in srgb, var(--metal), transparent 70%);
+  box-shadow: 0 18px 50px rgba(0,0,0,.2);
+}
+
+.wealth-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--metal);
+  opacity: .9;
+}
+
+.wealth-card::after {
+  content: "";
+  position: absolute;
+  top: -105px;
+  left: 50%;
+  width: 210px;
+  height: 210px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--metal);
+  filter: blur(90px);
+  opacity: .13;
+}
+
+.wealth-silver { --metal: #c3ccd5; }
+
+.wealth-champion {
+  --metal: #f2c95e;
+  min-height: 280px;
+  padding-top: 115px;
+  background: linear-gradient(145deg, rgba(220,174,65,.13), rgba(255,255,255,.015) 62%), #11100d;
+  border-color: rgba(242,201,94,.5);
+  box-shadow: 0 20px 60px rgba(0,0,0,.32), 0 0 35px rgba(220,174,65,.07);
+}
+
+.wealth-bronze { --metal: #c18b5a; }
+
+.wealth-crown {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: Georgia, serif;
+  color: var(--metal);
+  font-size: 76px;
+  line-height: 1;
+  text-shadow: 0 0 22px color-mix(in srgb, var(--metal), transparent 65%);
+}
+
+.wealth-champion .wealth-crown {
+  top: 7px;
+  font-size: 92px;
+}
+
+.wealth-caption {
+  position: relative;
+  z-index: 1;
+  color: var(--metal);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.wealth-name {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: #f5f1e8;
+  font-size: 19px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.wealth-balance {
+  position: relative;
+  z-index: 1;
+  color: var(--metal);
+  font-size: 25px;
+  font-weight: 800;
+  margin-top: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.wealth-balance small,
+.wealth-row-balance small {
+  color: #888277;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.wealth-accent {
+  position: relative;
+  z-index: 1;
+  width: 45px;
+  height: 1px;
+  margin-top: 17px;
+  background: var(--metal);
+  opacity: .55;
+}
+
+.wealth-rest {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.wealth-rest-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  border-bottom: 1px solid rgba(220,174,65,.2);
+  padding-bottom: 16px;
+}
+
+.wealth-rest-heading h2 {
+  color: #f5f1e8;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -.5px;
+}
+
+.wealth-rest-heading > span {
+  color: #898378;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding-bottom: 4px;
+}
+
+.wealth-list {
+  display: grid;
+  gap: 9px;
+  padding-top: 14px;
+}
+
+.wealth-row {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 23px;
+  background: linear-gradient(90deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+  border: 1px solid rgba(255,255,255,.07);
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.wealth-row:hover {
+  transform: translateX(4px);
+  border-color: rgba(220,174,65,.34);
+  background: rgba(220,174,65,.045);
+}
+
+.wealth-player {
+  color: #eee9df;
+  font-size: 14px;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+
+.wealth-row-balance {
+  color: #e6d4a6;
+  font-size: 17px;
+  font-weight: 800;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.wealth-data-note {
+  color: #706b61;
+  font-size: 10px;
+  line-height: 1.6;
+  text-align: center;
+  margin: 18px 0 0;
+}
+
+@media (max-width: 700px) {
+  .baltop-main {
+    width: min(100% - 30px, 520px);
+  }
+
+  .baltop-hero {
+    padding: 58px 0 35px;
+  }
+
+  .wealth-podium {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 52px;
+  }
+
+  .wealth-champion {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    min-height: 255px;
+  }
+
+  .wealth-silver,
+  .wealth-bronze {
+    min-height: 215px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .wealth-crown { font-size: 62px; }
+  .wealth-champion .wealth-crown { font-size: 82px; }
+  .wealth-name { font-size: 16px; }
+  .wealth-balance { font-size: 21px; }
+
+  .wealth-row {
+    min-height: 62px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .wealth-row-balance { font-size: 15px; }
+  .wealth-player { font-size: 12px; }
+}
+
+/* Empty leaderboard state */
+.baltop-page [hidden] { display: none !important; }
+#baltopStatus { color: #c7b98f; font-size: 12px; margin-top: 24px; }
+#baltopUpdated { color: #777168; font-size: 11px; margin-top: 5px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .red-flame,
+  .red-ember,
+  .red-fire-base {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,15 @@
+EVENTMC IMAGE GUIDE
+
+Upload your own PNG images into the assets folder using these exact names:
+
+staff.png          900 x 600 px
+comp.png           980 x 980 px
+life.png           256 x 256 px
+community.png      1200 x 1200 px
+player-count.png   Your custom Minecraft online player count icon
+discord-count.png  Your custom Discord online member count icon
+
+Staff profile images (PNG) use these filenames:
+its-huzaifa.png, voidnexus.png, muzammil.png, tryhunte.png, pvp-tagger.png, rafay.png, tier3tager.png, reikon.png, potfaster-pindi.png, unfeared-explorer.png, rynox.png, vinney.png, mr-slayer.png, meowvoid.png, diddy.png
+
+If a staff PNG has not been uploaded yet, the existing simple SVG placeholder is used automatically. Replace the PNG files when ready.

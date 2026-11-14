@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="Official EventMC Minecraft server information.">
+<title>Rules | EventMC</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/eventmc-logo.png">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="extras.css">
+
+<style>
+/* EVENTMC GOLDEN FIRE */
+body.staff-page {
+  position: relative;
+  isolation: isolate;
+  background: #080808;
+}
+
+.yellow-fire-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(255, 105, 0, .13), transparent 55%);
+}
+
+.yellow-fire-base {
+  position: absolute;
+  bottom: -35px;
+  left: -10%;
+  width: 120%;
+  height: 190px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 90, 0, .42),
+    rgba(255, 175, 0, .2),
+    transparent
+  );
+  filter: blur(26px);
+  animation: yellowBasePulse 3s ease-in-out infinite alternate;
+}
+
+.yellow-flame {
+  position: absolute;
+  bottom: -55px;
+  left: var(--flame-left);
+  width: var(--flame-width);
+  height: var(--flame-height);
+  opacity: var(--flame-opacity);
+  border-radius: 50% 50% 25% 25%;
+  transform-origin: 50% 100%;
+
+  background: linear-gradient(
+    to top,
+    #a82900 0%,
+    #ff4d00 22%,
+    #ff8500 43%,
+    #ffc400 65%,
+    #fff18a 82%,
+    transparent 100%
+  );
+
+  filter: blur(var(--flame-blur));
+
+  animation:
+    yellowFlameRise var(--flame-speed) ease-in-out infinite,
+    yellowFlameWave var(--flame-wave) ease-in-out infinite alternate;
+
+  animation-delay: var(--flame-delay);
+}
+
+.yellow-flame::before {
+  content: "";
+  position: absolute;
+  inset: 12% 22% 0;
+  border-radius: 50% 50% 30% 30%;
+  background: linear-gradient(
+    to top,
+    rgba(255, 80, 0, .85),
+    rgba(255, 210, 0, .6),
+    transparent
+  );
+  filter: blur(8px);
+}
+
+.yellow-ember {
+  position: absolute;
+  bottom: -15px;
+  left: var(--ember-left);
+  width: var(--ember-size);
+  height: var(--ember-size);
+  border-radius: 50%;
+  background: #ffe45c;
+
+  box-shadow:
+    0 0 6px #ffae00,
+    0 0 14px #ff7000,
+    0 0 24px #ff3d00;
+
+  opacity: 0;
+  animation: yellowEmberRise var(--ember-speed) linear infinite;
+  animation-delay: var(--ember-delay);
+}
+
+@keyframes yellowFlameRise {
+  0% {
+    transform: translateY(0) scaleX(1) scaleY(.7);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--flame-opacity);
+  }
+  65% {
+    opacity: var(--flame-opacity);
+  }
+  100% {
+    transform: translateY(-110vh) scaleX(.55) scaleY(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes yellowFlameWave {
+  from { margin-left: -12px; }
+  to { margin-left: 15px; }
+}
+
+@keyframes yellowEmberRise {
+  0% {
+    transform: translate(0, 0) scale(.4);
+    opacity: 0;
+  }
+  15% { opacity: .9; }
+  80% { opacity: .7; }
+  100% {
+    transform: translate(var(--ember-drift), -105vh) scale(.1);
+    opacity: 0;
+  }
+}
+
+@keyframes yellowBasePulse {
+  from { opacity: .65; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yellow-flame,
+  .yellow-ember,
+  .yellow-fire-base {
+    animation: none !important;
+  }
+}
+</style>
+</head>
+
+<body class="staff-page">
+
+<div class="yellow-fire-layer" id="yellowFireLayer" aria-hidden="true">
+  <div class="yellow-fire-base"></div>
+</div>
+
+<div class="page-glow"></div>
+
+<header class="site-header">
+  <a class="brand" href="index.html#home">
+    <img src="assets/eventmc-logo.png" alt="EventMC Logo">
+    <span>EVENT<span class="yellow">MC</span></span>
+  </a>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#server">Server</a>
+    <a href="index.html#ranks">Ranks</a>
+    <a href="index.html#permissions">Permissions</a>
+    <a href="staff.html">Staff</a>
+    <a href="rules.html">Rules</a>
+    <a href="faq.html">FAQ</a>
+    <a href="baltop.html">Baltop</a>
+    <a class="nav-discord" href="https://discord.gg/d8NJ4SGXV" target="_blank" rel="noopener noreferrer">Join Discord ↗</a>
+  </nav>
+</header>
+
+<main class="section-wrap extra-page">
+
+  <div class="section-heading">
+    <div class="section-kicker">OFFICIAL EVENTMC NETWORK</div>
+    <h1>PLAY FAIR. RESPECT <span class="yellow">THE COMMUNITY.</span></h1>
+    <p>Read the rules and punishment guidelines before playing on EventMC.</p>
+  </div>
+
+  <div class="policy-card">
+    <div>
+      <h2>IN-GAME PUNISHMENTS <span class="yellow">[BANS]</span></h2>
+      <div class="rule-list">
+        <div class="rule-row"><span>Harming the server in any way</span><strong>Permanent Ban / Blacklist</strong></div>
+        <div class="rule-row"><span>Doxxing / doxxing threats</span><strong>Permanent Ban / Blacklist</strong></div>
+        <div class="rule-row"><span>Hacking</span><strong>7d » 14d » 30d » Permanent Ban</strong></div>
+        <div class="rule-row"><span>Bug abuse</span><strong>3d » 7d » 14d » Permanent Ban</strong></div>
+        <div class="rule-row"><span>Ban evasion</span><strong>10d » 30d » Permanent Ban</strong></div>
+        <div class="rule-row"><span>Inappropriate names / skins</span><strong>7d » 30d » Permanent Ban</strong></div>
+        <div class="rule-row"><span>Spawn griefing</span><strong>3d » 7d » 30d</strong></div>
+        <div class="rule-row"><span>Mass EXP bottle dropping</span><strong>1 hour ban</strong></div>
+        <div class="rule-row"><span>Abusing in in-game voice chat</span><strong>1d » 3d » 7d</strong></div>
+        <div class="rule-row"><span>Discrimination in in-game voice chat</span><strong>1d » 3d » 7d</strong></div>
+        <div class="rule-row"><span>Boosting (in-game)</span><strong>1d » 3d » 7d</strong></div>
+        <div class="rule-row"><span>Dodging or leaving mid-screenshare</span><strong>3d » 7d » 30d</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="policy-card">
+    <div>
+      <h2>CHAT PUNISHMENTS <span class="yellow">[MUTES]</span></h2>
+      <div class="rule-list">
+        <div class="rule-row"><span>Discrimination / racism / homophobia</span><strong>1d » 3d » 7d » Permanent Mute</strong></div>
+        <div class="rule-row"><span>Suicide encouragement</span><strong>1d » 7d » Permanent Mute</strong></div>
+        <div class="rule-row"><span>Advertising</span><strong>7d » Permanent Mute</strong></div>
+        <div class="rule-row"><span>NSFW content</span><strong>2d » 3d » 7d » Permanent Mute</strong></div>
+        <div class="rule-row"><span>Spamming / extreme toxicity</span><strong>30m » 1h » 3h » 7h » 12h » 1d</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="policy-card">
+    <div>
+      <h2>KILL FARMING</h2>
+      <p>Kill farming is not allowed. Severe cases may lead to a team disband.</p>
+    </div>
+  </div>
+
+  <p class="rules-note">Punishments may escalate for repeat offences. Staff may review context and severity when handling reports.</p>
+
+  <div class="page-next">
+    <a class="button button-outline" href="faq.html">← Previous page</a>
+    <a class="button button-primary" href="index.html#ranks">Continue to Rank Shop →</a>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <a class="footer-brand" href="index.html">EVENT<span class="yellow">MC</span></a>
+  <p>Make your legacy. One battle at a time.</p>
+
+  <div class="footer-links">
+    <a href="index.html#home">Home</a>
+    <a href="index.html#server">Server</a>
+    <a href="index.html#ranks">Ranks</a>
+    <a href="index.html#permissions">Permissions</a>
+    <a href="staff.html">Staff</a>
+    <a href="rules.html">Rules</a>
+    <a href="faq.html">FAQ</a>
+    <a href="baltop.html">Baltop</a>
+    <a href="https://discord.gg/d8NJ4SGXV" target="_blank" rel="noopener noreferrer">Discord ↗</a>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© <span id="currentYear"></span> EventMC. All rights reserved.</span>
+    <span>Not affiliated with Mojang or Microsoft.</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const layer = document.getElementById("yellowFireLayer");
+
+  if (!layer || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  // Animated flames
+  for (let i = 0; i < 42; i++) {
+    const flame = document.createElement("div");
+    flame.className = "yellow-flame";
+
+    flame.style.setProperty("--flame-left", `${Math.random() * 100}%`);
+    flame.style.setProperty("--flame-width", `${18 + Math.random() * 48}px`);
+    flame.style.setProperty("--flame-height", `${180 + Math.random() * 360}px`);
+    flame.style.setProperty("--flame-opacity", `${0.25 + Math.random() * 0.55}`);
+    flame.style.setProperty("--flame-blur", `${3 + Math.random() * 9}px`);
+    flame.style.setProperty("--flame-speed", `${5 + Math.random() * 7}s`);
+    flame.style.setProperty("--flame-wave", `${1.2 + Math.random() * 2}s`);
+    flame.style.setProperty("--flame-delay", `${-Math.random() * 12}s`);
+
+    layer.appendChild(flame);
+  }
+
+  // Floating fire sparks
+  for (let i = 0; i < 65; i++) {
+    const ember = document.createElement("div");
+    ember.className = "yellow-ember";
+
+    ember.style.setProperty("--ember-left", `${Math.random() * 100}%`);
+    ember.style.setProperty("--ember-size", `${2 + Math.random() * 4}px`);
+    ember.style.setProperty("--ember-speed", `${5 + Math.random() * 8}s`);
+    ember.style.setProperty("--ember-delay", `${-Math.random() * 12}s`);
+    ember.style.setProperty("--ember-drift", `${-70 + Math.random() * 140}px`);
+
+    layer.appendChild(ember);
+  }
+})();
+</script>
+
+<script src="script.js" defer></script>
+<script defer src="page-transitions.js"></script>
+
+</body>
+</html>

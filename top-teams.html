@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Teams | EventMC</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="extras.css">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #070707;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.teams-page {
+    min-height: 100vh;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-bottom: 100px;
+}
+
+/* FLAME BACKGROUND */
+.fire-layer {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at bottom, rgba(110, 25, 0, .35), transparent 65%),
+        #070707;
+}
+
+.flame {
+    position: absolute;
+    bottom: -100px;
+    width: 55px;
+    height: 180px;
+    border-radius: 50% 50% 35% 35%;
+    transform-origin: bottom center;
+    filter: blur(7px);
+    opacity: .85;
+    background: linear-gradient(
+        to top,
+        #ff2600 0%,
+        #ff5e00 35%,
+        #ffae00 65%,
+        rgba(255, 230, 80, .8) 80%,
+        transparent 100%
+    );
+    animation: flameRise 2.5s infinite ease-in;
+}
+
+.flame::before {
+    content: "";
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    width: 50%;
+    height: 70%;
+    border-radius: 50%;
+    background: linear-gradient(to top, #ff8a00, #ffe66d, transparent);
+    filter: blur(5px);
+}
+
+@keyframes flameRise {
+    0% {
+        transform: translateY(0) scale(.65, .8) rotate(-8deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: .85;
+    }
+    50% {
+        transform: translateY(-45vh) scale(1.1, 1.4) rotate(8deg);
+        opacity: .8;
+    }
+    100% {
+        transform: translateY(-105vh) scale(.4, 1.7) rotate(-10deg);
+        opacity: 0;
+    }
+}
+
+/* EMBERS */
+.ember {
+    position: absolute;
+    bottom: -20px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ffb000;
+    box-shadow: 0 0 12px #ff4500, 0 0 22px #ff4500;
+    animation: emberRise 5s infinite linear;
+}
+
+@keyframes emberRise {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    15% { opacity: 1; }
+    100% {
+        transform: translateY(-110vh) translateX(70px);
+        opacity: 0;
+    }
+}
+
+/* PAGE CONTENT */
+.teams-content {
+    position: relative;
+    z-index: 2;
+}
+
+.teams-header {
+    text-align: center;
+    padding: 95px 20px 35px;
+}
+
+.teams-header .eyebrow {
+    color: #ff9c24;
+    letter-spacing: 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.teams-header h1 {
+    margin: 15px 0;
+    font-size: clamp(42px, 7vw, 78px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #fff;
+    text-shadow:
+        0 0 12px rgba(255, 75, 0, .8),
+        0 0 35px rgba(255, 40, 0, .5);
+}
+
+.teams-header h1 span {
+    color: #ff8a00;
+}
+
+.teams-header p {
+    color: #c2b9ad;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.podium {
+    max-width: 1100px;
+    margin: 65px auto;
+    padding: 0 22px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: end;
+}
+
+.team-card {
+    position: relative;
+    text-align: center;
+    padding: 38px 18px;
+    border: 1px solid rgba(255, 133, 30, .35);
+    border-radius: 16px;
+    background: linear-gradient(
+        160deg,
+        rgba(35, 20, 12, .94),
+        rgba(10, 10, 10, .96)
+    );
+    box-shadow: 0 0 35px rgba(255, 55, 0, .12);
+    transition: .3s ease;
+    overflow: hidden;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    border-color: #ff8a00;
+    box-shadow: 0 0 40px rgba(255, 75, 0, .35);
+}
+
+.team-card.first {
+    min-height: 350px;
+    border: 2px solid #ff9b22;
+    box-shadow: 0 0 45px rgba(255, 100, 0, .28);
+}
+
+.team-card.second,
+.team-card.third {
+    min-height: 300px;
+}
+
+.rank-number {
+    font-size: 15px;
+    letter-spacing: 4px;
+    color: #ff9b22;
+    font-weight: 900;
+}
+
+.crown {
+    font-size: 55px;
+    margin: 12px 0;
+    color: #ffb52e;
+    text-shadow: 0 0 22px rgba(255, 150, 0, .8);
+}
+
+.team-name {
+    font-size: clamp(21px, 3vw, 30px);
+    font-weight: 900;
+    margin: 15px 0;
+    overflow-wrap: anywhere;
+}
+
+.first .team-name {
+    color: #ffb52e;
+}
+
+.team-label {
+    display: inline-block;
+    padding: 8px 17px;
+    border-radius: 30px;
+    background: rgba(255, 115, 0, .13);
+    border: 1px solid rgba(255, 145, 0, .4);
+    color: #ffb15c;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.back-button {
+    display: table;
+    margin: 55px auto 0;
+    padding: 14px 30px;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #ff8a00;
+    border-radius: 7px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: .3s;
+}
+
+.back-button:hover {
+    background: #ff7900;
+    color: #080808;
+    box-shadow: 0 0 25px rgba(255, 100, 0, .5);
+}
+
+.teams-footer {
+    text-align: center;
+    color: #81766d;
+    font-size: 12px;
+    letter-spacing: 2px;
+    padding: 35px 15px;
+}
+
+@media(max-width: 700px) {
+    .podium {
+        grid-template-columns: 1fr;
+        max-width: 430px;
+        margin-top: 30px;
+    }
+
+    .team-card.first {
+        order: 0;
+    }
+
+    .team-card.second {
+        order: 1;
+    }
+
+    .team-card.third {
+        order: 2;
+    }
+
+    .teams-header {
+        padding-top: 65px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .flame, .ember {
+        animation: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="teams-page">
+
+    <div class="fire-layer" id="fireLayer"></div>
+
+    <main class="teams-content">
+
+        <header class="teams-header">
+            <div class="eyebrow">EVENTMC • TEAM LEADERBOARD</div>
+            <h1>TOP <span>TEAMS</span></h1>
+            <p>THE STRONGEST TEAMS ON EVENTMC</p>
+        </header>
+
+        <section class="podium">
+
+            <article class="team-card first">
+                <div class="rank-number"># 01</div>
+                <div class="crown">♛</div>
+                <div class="team-name">Forsaken</div>
+                <div class="team-label">CHAMPIONS</div>
+            </article>
+
+            <article class="team-card second">
+                <div class="rank-number"># 02</div>
+                <div class="crown">♛</div>
+                <div class="team-name">stxroids</div>
+                <div class="team-label">RUNNER UP</div>
+            </article>
+
+            <article class="team-card third">
+                <div class="rank-number"># 03</div>
+                <div class="crown">♛</div>
+                <div class="team-name">RedKnights</div>
+                <div class="team-label">TOP TEAM</div>
+            </article>
+
+        </section>
+
+        <a href="index.html" class="back-button">← BACK TO EVENTMC</a>
+
+        <footer class="teams-footer">
+            EVENTMC NETWORK • TOP 3 TEAMS
+        </footer>
+
+    </main>
+</div>
+
+<script>
+"use strict";
+
+(() => {
+    const layer = document.getElementById("fireLayer");
+    if (!layer || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Flames
+    for (let i = 0; i < 30; i++) {
+        const flame = document.createElement("div");
+        flame.className = "flame";
+        flame.style.left = (Math.random() * 100) + "%";
+        flame.style.animationDelay = (Math.random() * 3) + "s";
+        flame.style.animationDuration = (1.8 + Math.random() * 2.2) + "s";
+        flame.style.width = (25 + Math.random() * 65) + "px";
+        flame.style.height = (100 + Math.random() * 180) + "px";
+        layer.appendChild(flame);
+    }
+
+    // Floating fire embers
+    for (let i = 0; i < 45; i++) {
+        const ember = document.createElement("div");
+        ember.className = "ember";
+        ember.style.left = (Math.random() * 100) + "%";
+        ember.style.animationDelay = (Math.random() * 6) + "s";
+        ember.style.animationDuration = (3 + Math.random() * 5) + "s";
+        layer.appendChild(ember);
+    }
+})();
+</script>
+
+<script src="script.js"></script>
+<script src="page-transitions.js"></script>
+
+</body>
+</html>
